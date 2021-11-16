@@ -14,9 +14,11 @@ const Images = {
             check: require('./icon/ic_check_radio.png'),
             uncheck: require('./icon/ic_uncheck_radio.png'),
         },
+        icSendMess: require('./icon/ic_uncheck_radio.png'),
     },
     photo: {
         defaultImage: require('./photo/img_default_image.png'),
+        icPickImage: require('./photo/img_default_image.png'),
     },
 };
 

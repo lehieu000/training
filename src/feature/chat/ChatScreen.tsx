@@ -2,20 +2,21 @@
 import { useIsFocused } from '@react-navigation/native';
 import Images from 'assets/images';
 import { StyledIcon } from 'components/base';
-import ImagePicker from 'components/common/ImagePicker';
 import StyledHeader from 'components/common/StyledHeader';
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
-import { Bubble, Composer, GiftedChat, Send } from 'react-native-gifted-chat';
 import { ScaledSheet, verticalScale } from 'react-native-size-matters';
 import { useSocket } from 'utilities/SocketProvider';
 import { useAppSelector } from 'app-redux/hooks';
 
+const ImagePicker: any = null;
+const { Bubble, Composer, GiftedChat, Send }: any = ImagePicker;
+
 const ChatScreen = ({ route }: any) => {
-    const { conversationId: id, name } = route?.params;
-    const userInfo = useAppSelector((state) => state.userInfo);
+    const { conversationId: id } = route?.params;
+    const userInfo: any = useAppSelector((state) => state.userInfo);
     // tuy vao tung api detail user User Data se khac nhau
-    const [dataUser, setUser] = useState({
+    const [dataUser] = useState({
         _id: Number(`1${userInfo?.honbuId}`),
         name: userInfo?.honbuName,
     });
