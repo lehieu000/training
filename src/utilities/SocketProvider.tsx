@@ -1,13 +1,15 @@
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable import/no-unresolved */
 import { getProfile } from 'api/modules/api-app/authenticate';
-import { getMessage } from 'api/modules/api-app/chat';
 import Images from 'assets/images';
 import React, { useCallback, useEffect, useState } from 'react';
 import Config from 'react-native-config';
-import { GiftedChat } from 'react-native-gifted-chat';
 import { useSelector } from 'react-redux';
-import socketIO from 'socket.io-client';
 import { logger } from './helper';
+
+const getMessage: any = null;
+const GiftedChat: any = null;
+const socketIO: any = null;
 
 export const socket = socketIO(Config.API_URL, { timeout: 3000 });
 let isConnectSocket = false;
@@ -57,7 +59,7 @@ export const useSocket = (id?: string) => {
     const userInfo = useSelector((state: any) => state?.userInfo);
     const [messages, setMessages] = useState<any>([]);
     // tuy vao tung api detail user User Data se khac nhau
-    const [dataUser, setUser] = useState({
+    const [dataUser] = useState({
         _id: Number(`1${userInfo?.honbuId}`),
         name: userInfo?.honbuName,
     });
@@ -101,7 +103,7 @@ export const useSocket = (id?: string) => {
                 avatar:
                     listStaff?.find(
                         (staff: any) => Number(`2${staff?.staffId}`) === Number(`${item?.memberType}${item?.memberId}`),
-                    )?.photo?.[0] || Images.icons?.avatar,
+                    )?.photo?.[0] || Images.icons,
                 name:
                     listStaff?.find(
                         (staff: any) => Number(`2${staff?.staffId}`) === Number(`${item?.memberType}${item?.memberId}`),
@@ -148,7 +150,7 @@ export const useSocket = (id?: string) => {
                 conversationId,
                 lastTime: new Date().getTime(),
             },
-            (res: any) => {
+            () => {
                 cb?.();
             },
         );
@@ -162,7 +164,7 @@ export const useSocket = (id?: string) => {
             });
         });
         socket.off('reconnect');
-        socket.on('reconnect', (attempt: any) => {
+        socket.on('reconnect', () => {
             emitJoinRoom(getListMessage);
         });
     };
