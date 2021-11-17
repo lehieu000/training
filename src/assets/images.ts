@@ -1,6 +1,7 @@
 /* App config for images
  */
 const Images = {
+    imageFirstScreen: require('./icon/first.png'),
     icons: {
         selected: require('./icon/ic_select.png'),
         back: require('./icon/ic_back.png'),

@@ -8,11 +8,13 @@ import RegisterScreen from 'feature/authentication/RegisterScreen';
 import ForgotPasswordScreen from 'feature/authentication/ForgotPwdScreen';
 import SendOTP from 'feature/authentication/SendOtp';
 import ChangePassword from 'feature/authentication/ChangePassword';
+import FirstScreen from 'feature/authentication/FirstScreen';
 
 const MainStack = createStackNavigator();
 
 const AuthStack = () => (
     <MainStack.Navigator headerMode={'none'} screenOptions={navigationConfigs} keyboardHandlingEnabled={isIos}>
+        <MainStack.Screen name={AUTHENTICATE_ROUTE.FIRST_LOGIN} component={FirstScreen} />
         <MainStack.Screen name={AUTHENTICATE_ROUTE.LOGIN} component={LoginScreen} />
         <MainStack.Screen name={AUTHENTICATE_ROUTE.REGISTER} component={RegisterScreen} />
         <MainStack.Screen name={AUTHENTICATE_ROUTE.FORGOT_PASS} component={ForgotPasswordScreen} />
