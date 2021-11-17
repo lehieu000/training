@@ -110,4 +110,11 @@ export default {
         inputComponent:
             'You need to wrap input by Form Provider or passing "form = useForm( ... )" into input component.',
     },
+    firstScreen: {
+        title1: '元気',
+        title2: 'SUITE SELECTION',
+        title3: 'スイートセレクションは、質の高いプロフェッショナルと、質を求めているお客様をつなげるアプリです。',
+        bottomSignUp: '新規登録',
+        guestAccountLogin: 'Đăng nhập tài khoản khách',
+    },
 };

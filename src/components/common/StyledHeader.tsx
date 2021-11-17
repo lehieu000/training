@@ -10,7 +10,7 @@ import { logger } from 'utilities/helper';
 
 interface HeaderProps extends ViewProps {
     isBack?: boolean;
-    title?: string;
+    title?: any;
     iconAction?: any;
     customStyle?: StyleProp<ViewStyle>;
     onPressAction?(): void;
