@@ -23,6 +23,11 @@ const Light = {
         backRoundSignIn: '#FFB900',
         colorBottomLogIn: '#353A50',
         ColorBackRoundImage: '#101110',
+        backgroundColorHeader: '#23253C',
+        backgroundColorLogIn: '#141829',
+        titleColor: '#0000ff',
+        textInput: '#78849E',
+        black: '#202020',
     },
     FONTS: {
         defaultFont: 'Montserrat-Regular',

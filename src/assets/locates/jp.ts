@@ -117,4 +117,14 @@ export default {
         bottomSignUp: '新規登録',
         guestAccountLogin: 'Đăng nhập tài khoản khách',
     },
+    logInScreens: {
+        forgotPassword: 'パスワードを忘れた',
+        title: 'アカウントを持っていない方は',
+        hereTitle: 'こちらへ',
+        telephone: '電話番号/メールアドレス',
+        password: 'パスワード',
+        signUp: '新規登録',
+        retypePassword: '再パスワード',
+        nameSignUp: 'ユーザー名',
+    },
 };
