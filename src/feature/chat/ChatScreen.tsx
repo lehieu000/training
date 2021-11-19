@@ -66,7 +66,7 @@ const ChatScreen = ({ route }: any) => {
         return (
             <View style={styles.composer}>
                 <ImagePicker setImage={setImage}>
-                    <StyledIcon customStyle={{ marginLeft: 3 }} source={Images.icons.icPickImage} size={30} />
+                    <StyledIcon customStyle={{ marginLeft: 3 }} source={Images.icons.icSendMess} size={30} />
                 </ImagePicker>
 
                 <Composer {...props} multiline textInputStyle={styles.input} placeholderTextColor={'#D2D2D2'} />
