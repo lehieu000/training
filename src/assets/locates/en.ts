@@ -126,5 +126,9 @@ export default {
         signUp: '新規登録',
         retypePassword: '再パスワード',
         nameSignUp: 'ユーザー名',
+        errorTextEmail: 'Invalid Email',
+        errorTextPass: 'Invalid Password',
+        errorTextName: 'Invalid Name',
+        errorRetypePass: 'Entered Password Does Not Match',
     },
 };

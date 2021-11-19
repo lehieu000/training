@@ -4,7 +4,6 @@ const common = {
     black: '#000',
     blue: 'blue',
     placeHolderGray: 'rgba(216, 216, 216, 0.6)',
-    borderInputError: '#ff0000',
     green: 'green',
     grey: 'grey',
 };
@@ -28,6 +27,7 @@ const Light = {
         titleColor: '#0000ff',
         textInput: '#78849E',
         black: '#202020',
+        borderInputError: '#ff0000',
     },
     FONTS: {
         defaultFont: 'Montserrat-Regular',

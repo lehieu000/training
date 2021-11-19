@@ -1,27 +1,62 @@
 import { Themes } from 'assets/themes';
 import { useTranslation } from 'react-i18next';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { emailReg, passReg } from './components/Regex ';
 import Header from './components/Header';
 import CustomInputAuthentication from './components/CustomInputAuthentication';
 
 const LogInScreens = () => {
     const { t } = useTranslation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isValidEmail, setIsValidEmail] = useState(false);
+    const [isValidPass, setIsValidPass] = useState(false);
+
+    useEffect(() => {
+        if (emailReg.test(email) === false) return setIsValidEmail(true);
+        return setIsValidEmail(false);
+    }, [email]);
+
+    useEffect(() => {
+        if (passReg.test(password) === false) return setIsValidPass(true);
+        return setIsValidPass(false);
+    }, [password]);
     return (
         <View style={styles.wrapperAll}>
             <Header />
             <View style={styles.body}>
                 <Text style={styles.logInStyle}>{t('authen.login.buttonLogin')}</Text>
-                <CustomInputAuthentication title={t('logInScreens.telephone')} isPassword={false} />
-                <CustomInputAuthentication title={t('logInScreens.password')} isPassword={true} />
+                <CustomInputAuthentication
+                    title={t('logInScreens.telephone')}
+                    isPassword={false}
+                    value={email}
+                    onChangeText={setEmail}
+                    isValid={isValidEmail}
+                    textError={t('logInScreens.errorTextEmail')}
+                />
+                <CustomInputAuthentication
+                    title={t('logInScreens.password')}
+                    isPassword={true}
+                    value={password}
+                    onChangeText={setPassword}
+                    isValid={isValidPass}
+                    textError={t('logInScreens.errorTextPass')}
+                />
                 <TouchableOpacity style={styles.bottomStyle}>
                     <Text style={styles.forgotPasswordStyle}>{t('logInScreens.forgotPassword')}</Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.bodyBottom}>
-                <TouchableOpacity style={styles.bottomSignIn}>
-                    <Text style={styles.textBottom}>{t('authen.login.buttonLogin')}</Text>
-                </TouchableOpacity>
+                {email.length !== 0 && password.length !== 0 && isValidEmail === false && isValidPass === false ? (
+                    <TouchableOpacity style={styles.bottomSignIn}>
+                        <Text style={styles.textBottom}>{t('authen.login.buttonLogin')}</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <View style={styles.bottomSignIn}>
+                        <Text style={styles.textBottom}>{t('authen.login.buttonLogin')}</Text>
+                    </View>
+                )}
                 <View style={styles.titleStyle}>
                     <Text style={styles.title}>{t('logInScreens.title')}</Text>
                     <TouchableOpacity>
