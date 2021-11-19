@@ -54,7 +54,7 @@ export default {
         login: {
             placeholderEmail: 'Email address required',
             placeholderPassword: 'Password required',
-            buttonLogin: 'Login',
+            buttonLogin: 'ログイン',
             rememberText: 'Keep logged in',
             forgotPasswordText: 'If you forgot your password, click here',
             registerText: 'Register now',
@@ -116,5 +116,15 @@ export default {
         title3: 'スイートセレクションは、質の高いプロフェッショナルと、質を求めているお客様をつなげるアプリです。',
         bottomSignUp: '新規登録',
         guestAccountLogin: 'Đăng nhập tài khoản khách',
+    },
+    logInScreens: {
+        forgotPassword: 'パスワードを忘れた',
+        title: 'アカウントを持っていない方は',
+        hereTitle: 'こちらへ',
+        telephone: '電話番号/メールアドレス',
+        password: 'パスワード',
+        signUp: '新規登録',
+        retypePassword: '再パスワード',
+        nameSignUp: 'ユーザー名',
     },
 };

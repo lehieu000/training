@@ -2,10 +2,18 @@ import Images from 'assets/images';
 import { Themes } from 'assets/themes';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { AUTHENTICATE_ROUTE } from 'navigation/config/routes';
+import { navigate } from 'navigation/NavigationService';
 import { Text, View, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native';
 
 const FirstScreen = () => {
     const { t } = useTranslation();
+    const onLogIn = () => {
+        navigate(AUTHENTICATE_ROUTE.LOGIN_SCREENS);
+    };
+    const onSignUp = () => {
+        navigate(AUTHENTICATE_ROUTE.SIGNUP_SCREEN);
+    };
     return (
         <ImageBackground source={Images.imageFirstScreen} style={styles.imageStyle}>
             <View style={styles.bodyText}>
@@ -14,10 +22,11 @@ const FirstScreen = () => {
                 <Text style={styles.txtText}>{t('firstScreen.title3')}</Text>
             </View>
             <View style={styles.bottomStyle}>
-                <TouchableOpacity style={styles.bottomSignIn}>
+                <TouchableOpacity style={styles.bottomSignIn} onPress={onLogIn}>
                     <Text style={styles.textBottom}>{t('authen.login.buttonLogin')}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.bottomLogIn}>
+
+                <TouchableOpacity style={styles.bottomLogIn} onPress={onSignUp}>
                     <Text style={styles.textBottom}>{t('firstScreen.bottomSignUp')}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.txtBottomLogIn}>
@@ -39,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    bottomStyle: { marginBottom: 50 },
+    bottomStyle: { width: '100%', paddingHorizontal: 30, marginBottom: 30, alignItems: 'center' },
     textStyle: {
         fontFamily: 'Helvetica Neue',
         fontSize: 35,
@@ -52,8 +61,9 @@ const styles = StyleSheet.create({
         color: Themes.COLORS.white,
         padding: 12,
     },
+
     bottomSignIn: {
-        width: 327,
+        width: '100%',
         height: 52,
         backgroundColor: Themes.COLORS.backRoundSignIn,
         justifyContent: 'center',
@@ -61,8 +71,8 @@ const styles = StyleSheet.create({
         margin: 5,
     },
     bottomLogIn: {
+        width: '100%',
         margin: 5,
-        width: 327,
         height: 52,
         backgroundColor: Themes.COLORS.colorBottomLogIn,
         justifyContent: 'center',
