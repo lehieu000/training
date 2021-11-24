@@ -1,21 +1,19 @@
 import { Themes } from 'assets/themes';
 import React from 'react';
-import { Text, View, Image, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
-import { useTranslation } from 'react-i18next';
-import Images from 'assets/images';
-import Memorized from '../authentication/components/Memorized';
-import ShowAll from '../authentication/components/ShowAll';
-import NeedPractice from '../authentication/components/NeedPractice';
 
-const HomeScreen = () => {
-    const { t } = useTranslation();
+import Memorized from './Memorized';
+import ShowAll from './ShowAll';
+import NeedPractice from './NeedPractice';
+
+const Home = () => {
     return (
-        <SafeAreaView style={styles.wrapperAll}>
+        <View style={styles.wrapperAll}>
             <View style={styles.styleHeader}>
                 <Text style={styles.styleTextHeader}>メッセージ</Text>
                 <TouchableOpacity>
-                    <Image source={Images.icons.tab.rectangle} />
+                    <Text style={styles.styleTextHeader}>+</Text>
                 </TouchableOpacity>
             </View>
             <ScrollableTabView
@@ -25,23 +23,24 @@ const HomeScreen = () => {
                 tabBarUnderlineStyle={styles.underlineTabbar}
                 tabBarActiveTextColor={Themes.COLORS.white}
             >
-                <ShowAll tabLabel={t('tab.show')} />
-                <Memorized tabLabel={t('tab.Memorized')} />
-                <NeedPractice tabLabel={t('tab.NeedPractice')} />
+                <ShowAll tabLabel="全て" />
+                <Memorized tabLabel="未読" />
+                <NeedPractice tabLabel="既読" />
             </ScrollableTabView>
-        </SafeAreaView>
+        </View>
     );
 };
 const styles = StyleSheet.create({
     wrapperAll: {
         flex: 1,
-        backgroundColor: Themes.COLORS.backgroundColorHeader,
+        backgroundColor: Themes.COLORS.backgroundColorLogIn,
     },
     styleHeader: {
-        height: 70,
+        height: 100,
         flexDirection: 'row',
         justifyContent: 'space-between',
         backgroundColor: Themes.COLORS.backgroundColorHeader,
+        paddingTop: 50,
         alignItems: 'center',
         paddingHorizontal: 20,
     },
@@ -51,7 +50,7 @@ const styles = StyleSheet.create({
     },
     styleScrollableTabView: {
         backgroundColor: Themes.COLORS.backgroundColorLogIn,
-        borderTopColor: Themes.COLORS.white,
+        borderTopColor: 'white',
         borderTopWidth: 0.5,
     },
     underlineTabbar: {
@@ -59,4 +58,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen;
+export default Home;

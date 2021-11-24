@@ -1,6 +1,5 @@
 import React from 'react';
-import { Platform, View, Image, StyleSheet } from 'react-native';
-import Metrics from 'assets/metrics';
+import { View, Image, StyleSheet } from 'react-native';
 import { StyledText, StyledTouchable } from 'components/base';
 import { Themes } from 'assets/themes';
 import Size from 'assets/sizes';
@@ -45,13 +44,13 @@ const StyledTabBar = ({ state, descriptors, navigation }: any) => {
                             source={options?.icon}
                             style={[
                                 styles.tabIcon,
-                                { tintColor: isFocused ? Themes.COLORS.primary : Themes.COLORS.textPrimary },
+                                { tintColor: isFocused ? Themes.COLORS.backRoundSignIn : Themes.COLORS.textInput },
                             ]}
                         />
                         <StyledText
                             customStyle={[
                                 styles.tabLabel,
-                                { color: isFocused ? Themes.COLORS.primary : Themes.COLORS.textPrimary },
+                                { color: isFocused ? Themes.COLORS.backRoundSignIn : Themes.COLORS.textInput },
                             ]}
                             i18nText={options?.title || ''}
                         />
@@ -65,25 +64,24 @@ const StyledTabBar = ({ state, descriptors, navigation }: any) => {
 const styles = StyleSheet.create({
     tabContainer: {
         flexDirection: 'row',
-        marginBottom: Platform.OS === 'ios' ? Metrics.safeBottomPadding : 0,
-        borderTopColor: '#DEE2E6',
         justifyContent: 'space-around',
-        borderTopWidth: 1,
-        alignItems: Platform.OS === 'ios' ? 'flex-end' : 'center',
-        height: '8%',
+        height: '10%',
+        backgroundColor: Themes.COLORS.backgroundColorHeader,
     },
     tabButton: {
         alignItems: 'center',
+        justifyContent: 'center',
     },
     tabIcon: {
-        width: 17,
-        height: 17,
+        width: 25,
+        height: 25,
         resizeMode: 'contain',
         marginBottom: 5,
     },
     tabLabel: {
         paddingLeft: Size.PADDING.defaultTextPadding,
         textAlign: 'center',
+        fontSize: 12,
     },
 });
 
