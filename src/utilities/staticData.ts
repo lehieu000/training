@@ -20,3 +20,4 @@ export const dataPicker = [
     'label9',
     'label10',
 ];
+export const status = { ShowAll: 0, Memorized: 1, NeedPractice: 2 };

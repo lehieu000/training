@@ -1,94 +1,61 @@
-import React, { FunctionComponent, useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import StyledHeader from 'components/common/StyledHeader';
-import { TAB_NAVIGATION_ROOT } from 'navigation/config/routes';
-import { wait } from 'utilities/helper';
-import StyledPicker from 'components/base/picker/StyledPicker';
-import ModalizeManager from 'components/base/modal/ModalizeManager';
-import { dataPicker } from 'utilities/staticData';
-import StyledOverlayLoading from 'components/base/StyledOverlayLoading';
-import { StyledButton } from 'components/base';
-import ModalContent from './components/ModalContent';
+import { Themes } from 'assets/themes';
+import React from 'react';
+import { Text, View, Image, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import ScrollableTabView from 'react-native-scrollable-tab-view';
+import { useTranslation } from 'react-i18next';
+import Images from 'assets/images';
+import Memorized from './components/Memorized';
+import ShowAll from './components/ShowAll';
+import NeedPractice from './components/NeedPractice';
 
-const HomeScreen: FunctionComponent = () => {
-    const navigation = useNavigation();
-    const modalize = ModalizeManager();
-    const [valuePicker, setValuePicker] = useState(dataPicker[0]);
-    const [currentValue, setCurrentValue] = useState(0);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const fakeCallAPI = () => {
-        setIsLoading(true);
-        wait(2000).then(() => {
-            setIsLoading(false);
-        });
-    };
-
-    const handleConfirm = (item: string) => {
-        setValuePicker(item);
-    };
-
+const HomeScreen = () => {
+    const { t } = useTranslation();
     return (
-        <View style={{ flex: 1 }}>
-            <StyledHeader title={'Home Screen'} />
-            <StyledOverlayLoading visible={isLoading} />
-            <View style={styles.contScreen}>
-                <StyledPicker
-                    label="Test Picker"
-                    currentValue={valuePicker}
-                    dataList={dataPicker}
-                    onConfirm={handleConfirm}
-                />
-                <StyledButton
-                    title="Open Modal 1"
-                    onPress={() => {
-                        modalize.show(
-                            'modalTest',
-                            <ModalContent
-                                currentValue={currentValue}
-                                handleSetValue={setCurrentValue}
-                                handleIncreaseNumber={() => setCurrentValue(currentValue + 1)}
-                                closeModal={() => modalize.dismiss('modalTest')}
-                                handleCallback={() => alert('Test callback from modal')}
-                            />,
-                            {
-                                isCenter: true,
-                                adjustToContentHeight: true,
-                                disableScrollIfPossible: false,
-                            },
-                        );
-                    }}
-                />
-                <StyledButton
-                    title={'Detail Screen'}
-                    onPress={() => navigation.navigate(TAB_NAVIGATION_ROOT.HOME_ROUTE.HOME_DETAIL)}
-                />
-                <StyledButton
-                    title={'Data Screen'}
-                    onPress={() => navigation.navigate(TAB_NAVIGATION_ROOT.HOME_ROUTE.HOME_DATA)}
-                />
-                <StyledButton
-                    title={'User List Screen'}
-                    onPress={() => navigation.navigate(TAB_NAVIGATION_ROOT.HOME_ROUTE.HOME_USER_LIST)}
-                />
-                <StyledButton title={'Trigger Loading'} onPress={fakeCallAPI} />
+        <SafeAreaView style={styles.wrapperAll}>
+            <View style={styles.styleHeader}>
+                <Text style={styles.styleTextHeader}>メッセージ</Text>
+                <TouchableOpacity>
+                    <Image source={Images.icons.tab.rectangle} />
+                </TouchableOpacity>
             </View>
-        </View>
+            <ScrollableTabView
+                style={styles.styleScrollableTabView}
+                tabBarBackgroundColor={Themes.COLORS.backgroundColorHeader}
+                tabBarInactiveTextColor={Themes.COLORS.white}
+                tabBarUnderlineStyle={styles.underlineTabbar}
+                tabBarActiveTextColor={Themes.COLORS.white}
+            >
+                <ShowAll tabLabel={t('tab.show')} />
+                <Memorized tabLabel={t('tab.Memorized')} />
+                <NeedPractice tabLabel={t('tab.NeedPractice')} />
+            </ScrollableTabView>
+        </SafeAreaView>
     );
 };
-
 const styles = StyleSheet.create({
-    contScreen: {
+    wrapperAll: {
         flex: 1,
-        alignItems: 'center',
-        marginTop: 50,
-        paddingHorizontal: 25,
+        backgroundColor: Themes.COLORS.backgroundColorHeader,
     },
-    contModalContent: {
-        backgroundColor: 'white',
+    styleHeader: {
+        height: 70,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        backgroundColor: Themes.COLORS.backgroundColorHeader,
         alignItems: 'center',
-        justifyContent: 'center',
+        paddingHorizontal: 20,
+    },
+    styleTextHeader: {
+        color: Themes.COLORS.white,
+        fontSize: 24,
+    },
+    styleScrollableTabView: {
+        backgroundColor: Themes.COLORS.backgroundColorLogIn,
+        borderTopColor: Themes.COLORS.backgroundImage,
+        borderTopWidth: 0.5,
+    },
+    underlineTabbar: {
+        backgroundColor: Themes.COLORS.backRoundSignIn,
     },
 });
 

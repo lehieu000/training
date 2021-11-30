@@ -49,6 +49,13 @@ export default {
         notification: '通知',
         setting: '設定',
         account: 'アカウント',
+        search: '検索',
+        calendar: 'スケジュール',
+        takePhoto: 'スナップフォト',
+        follow: 'フォロー',
+        show: '全て',
+        Memorized: '未読',
+        NeedPractice: '既読',
     },
     authen: {
         login: {

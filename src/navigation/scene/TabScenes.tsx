@@ -1,20 +1,21 @@
 import { BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import Images from 'assets/images';
-import AccountView from 'feature/account/AccountView';
 import HomeDataScreen from 'feature/home/HomeDataScreen';
 import HomeDetailScreen from 'feature/home/HomeDetailScreen';
 // Screen
 import HomeScreen from 'feature/home/HomeScreen';
 import HomeUserListScreen from 'feature/home/HomeUserListScreen';
-import NotificationScreen from 'feature/notification/NotificationScreen';
-import SettingView from 'feature/setting/SettingScreen';
 import StyledTabBar from 'navigation/components/StyledTabBar';
 import navigationConfigs from 'navigation/config/options';
 import { TAB_NAVIGATION_ROOT } from 'navigation/config/routes';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { isIos } from 'utilities/helper';
+import Search from 'feature/search/Search';
+import Follow from 'feature/follow/Follow';
+import Schedule from 'feature/Schedule/Schedule';
+import Photo from 'feature/photo/Photo';
 
 const MainStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
@@ -40,21 +41,28 @@ const MainTabContainer = () => {
         },
         {
             name: TAB_NAVIGATION_ROOT.NOTIFICATION_ROUTE.ROOT,
-            title: t('tab.notification'),
-            component: NotificationScreen,
-            icon: Images.icons.tab.notification,
+            title: t('tab.search'),
+            component: Search,
+            icon: Images.icons.tab.search,
         },
         {
             name: TAB_NAVIGATION_ROOT.SETTING_ROUTE.ROOT,
-            title: t('tab.setting'),
-            component: SettingView,
-            icon: Images.icons.tab.setting,
+            title: t('tab.takePhoto'),
+            component: Photo,
+            icon: Images.icons.tab.bag,
         },
+
         {
             name: TAB_NAVIGATION_ROOT.ACCOUNT_ROUTE.ROOT,
-            title: t('tab.account'),
-            component: AccountView,
-            icon: Images.icons.tab.account,
+            title: t('tab.calendar'),
+            component: Schedule,
+            icon: Images.icons.tab.calendar,
+        },
+        {
+            name: TAB_NAVIGATION_ROOT.FOLLOW_ROUTE.ROOT,
+            title: t('tab.follow'),
+            component: Follow,
+            icon: Images.icons.tab.follow,
         },
     ];
     return (

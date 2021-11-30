@@ -45,10 +45,15 @@ export default {
 
     // screens
     tab: {
-        home: 'Home',
+        home: 'ホーム',
         notification: 'Notification',
-        setting: 'Setting',
+        calendar: 'スケジュール',
         account: 'Account',
+        takePhoto: 'スナップフォト',
+        follow: 'フォロー',
+        show: '全て',
+        Memorized: '未読',
+        NeedPractice: '既読',
     },
     authen: {
         login: {
@@ -75,7 +80,7 @@ export default {
             sendButtonTitle: 'Next',
         },
     },
-    home: {},
+    home: 'ホーム',
     account: {},
     notification: {},
     setting: {},

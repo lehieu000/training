@@ -28,6 +28,7 @@ const Light = {
         textInput: '#78849E',
         black: '#202020',
         borderInputError: '#ff0000',
+        backgroundImage: '#C4C4C4',
     },
     FONTS: {
         defaultFont: 'Montserrat-Regular',

@@ -2,24 +2,26 @@ import { Themes } from 'assets/themes';
 import { useTranslation } from 'react-i18next';
 import React, { useEffect, useState } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
-import { emailReg, passReg } from './components/Regex ';
-import Header from './components/Header';
+import StyledOverlayLoading from 'components/base/StyledOverlayLoading';
+import { useLogin } from 'utilities/authenticate/AuthenticateService';
+import Header from 'feature/home/Header';
 import CustomInputAuthentication from './components/CustomInputAuthentication';
 
 const LogInScreens = () => {
+    const { requestLogin, loading } = useLogin();
     const { t } = useTranslation();
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('admin');
+    const [password, setPassword] = useState('123456');
     const [isValidEmail, setIsValidEmail] = useState(false);
     const [isValidPass, setIsValidPass] = useState(false);
 
     useEffect(() => {
-        if (emailReg.test(email) === false) return setIsValidEmail(true);
+        // if (emailReg.test(email) === false) return setIsValidEmail(true);
         return setIsValidEmail(false);
     }, [email]);
 
     useEffect(() => {
-        if (passReg.test(password) === false) return setIsValidPass(true);
+        // if (passReg.test(password) === false) return setIsValidPass(true);
         return setIsValidPass(false);
     }, [password]);
     return (
@@ -27,6 +29,7 @@ const LogInScreens = () => {
             <Header />
             <View style={styles.body}>
                 <Text style={styles.logInStyle}>{t('authen.login.buttonLogin')}</Text>
+
                 <CustomInputAuthentication
                     title={t('logInScreens.telephone')}
                     isPassword={false}
@@ -47,13 +50,17 @@ const LogInScreens = () => {
                     <Text style={styles.forgotPasswordStyle}>{t('logInScreens.forgotPassword')}</Text>
                 </TouchableOpacity>
             </View>
+            <StyledOverlayLoading visible={loading} />
             <View style={styles.bodyBottom}>
                 {email.length !== 0 && password.length !== 0 && isValidEmail === false && isValidPass === false ? (
-                    <TouchableOpacity style={styles.bottomSignIn}>
+                    <TouchableOpacity
+                        style={styles.bottomSignIn}
+                        onPress={() => requestLogin({ username: email, password })}
+                    >
                         <Text style={styles.textBottom}>{t('authen.login.buttonLogin')}</Text>
                     </TouchableOpacity>
                 ) : (
-                    <View style={styles.bottomSignIn}>
+                    <View style={styles.bottomSignInDisable}>
                         <Text style={styles.textBottom}>{t('authen.login.buttonLogin')}</Text>
                     </View>
                 )}
@@ -96,6 +103,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 50,
         backgroundColor: Themes.COLORS.backRoundSignIn,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    bottomSignInDisable: {
+        width: '100%',
+        height: 50,
+        backgroundColor: Themes.COLORS.textInput,
         justifyContent: 'center',
         alignItems: 'center',
     },
