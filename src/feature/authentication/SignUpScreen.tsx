@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { nameReg, emailReg, passReg } from './components/Regex ';
-import Header from './components/Header';
+import Header from '../home/Header';
 import CustomInputAuthentication from './components/CustomInputAuthentication';
 
 const SignUpScreen = () => {

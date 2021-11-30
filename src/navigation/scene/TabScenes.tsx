@@ -6,16 +6,16 @@ import HomeDetailScreen from 'feature/home/HomeDetailScreen';
 // Screen
 import HomeScreen from 'feature/home/HomeScreen';
 import HomeUserListScreen from 'feature/home/HomeUserListScreen';
-import Search from 'feature/authentication/components/Search';
 import StyledTabBar from 'navigation/components/StyledTabBar';
 import navigationConfigs from 'navigation/config/options';
 import { TAB_NAVIGATION_ROOT } from 'navigation/config/routes';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { isIos } from 'utilities/helper';
-import Follow from 'feature/authentication/components/Follow';
-import Schedule from 'feature/authentication/components/Schedule';
-import Photo from 'feature/authentication/components/Photo';
+import Search from 'feature/search/Search';
+import Follow from 'feature/follow/Follow';
+import Schedule from 'feature/Schedule/Schedule';
+import Photo from 'feature/photo/Photo';
 
 const MainStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
@@ -59,7 +59,7 @@ const MainTabContainer = () => {
             icon: Images.icons.tab.calendar,
         },
         {
-            name: TAB_NAVIGATION_ROOT.HOME_ROUTE.HOME_DETAIL,
+            name: TAB_NAVIGATION_ROOT.FOLLOW_ROUTE.ROOT,
             title: t('tab.follow'),
             component: Follow,
             icon: Images.icons.tab.follow,

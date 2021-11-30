@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     tabContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        height: '10%',
+        height: '9%',
         backgroundColor: Themes.COLORS.backgroundColorHeader,
     },
     tabButton: {
@@ -73,15 +73,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     tabIcon: {
-        width: 25,
-        height: 25,
+        width: 20,
+        height: 20,
         resizeMode: 'contain',
         marginBottom: 5,
     },
     tabLabel: {
         paddingLeft: Size.PADDING.defaultTextPadding,
         textAlign: 'center',
-        fontSize: 12,
+        fontSize: 10,
     },
 });
 

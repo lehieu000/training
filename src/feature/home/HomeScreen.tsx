@@ -4,9 +4,9 @@ import { Text, View, Image, SafeAreaView, StyleSheet, TouchableOpacity } from 'r
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { useTranslation } from 'react-i18next';
 import Images from 'assets/images';
-import Memorized from '../authentication/components/Memorized';
-import ShowAll from '../authentication/components/ShowAll';
-import NeedPractice from '../authentication/components/NeedPractice';
+import Memorized from './components/Memorized';
+import ShowAll from './components/ShowAll';
+import NeedPractice from './components/NeedPractice';
 
 const HomeScreen = () => {
     const { t } = useTranslation();
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     styleScrollableTabView: {
         backgroundColor: Themes.COLORS.backgroundColorLogIn,
-        borderTopColor: Themes.COLORS.white,
+        borderTopColor: Themes.COLORS.backgroundImage,
         borderTopWidth: 0.5,
     },
     underlineTabbar: {
