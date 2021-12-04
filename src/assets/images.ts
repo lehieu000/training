@@ -16,6 +16,7 @@ const Images = {
             bag: require('./icon/bag.png'),
             follow: require('./icon/heart.png'),
             rectangle: require('./icon/Rectangle.png'),
+            edit: require('./icon/edit.png'),
         },
         radio: {
             check: require('./icon/ic_check_radio.png'),

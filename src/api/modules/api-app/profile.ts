@@ -5,4 +5,6 @@ const getListData = (params: any) =>
         `v1/app/task/list?pageIndex=${params.pageIndex}&pageSize=${params.pageSize}&title=&status=${params.status}`,
     );
 
-export { getListData };
+const editListData = (param: any, id: number) => request.put(`v1/app/task/update/${id}`, param);
+
+export { editListData, getListData };

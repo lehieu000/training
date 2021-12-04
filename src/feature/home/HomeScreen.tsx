@@ -13,7 +13,7 @@ const HomeScreen = () => {
     return (
         <SafeAreaView style={styles.wrapperAll}>
             <View style={styles.styleHeader}>
-                <Text style={styles.styleTextHeader}>メッセージ</Text>
+                <Text style={styles.styleTextHeader}>{t('tab.header')}</Text>
                 <TouchableOpacity>
                     <Image source={Images.icons.tab.rectangle} />
                 </TouchableOpacity>

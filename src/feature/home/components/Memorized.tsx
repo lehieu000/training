@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
 import { TabProps } from 'react-native-scrollable-tab-view';
-import { getData } from 'feature/appApi/getData';
+import { getData, editData } from 'feature/appApi/appApi';
 import { status } from 'utilities/staticData';
 import ItemHome from './ItemHome';
+import ModalEdit from './ModalEdit';
+// import ModalAdd from './ModalAdd';
+
+interface IItemData {
+    title: string;
+    content: string;
+    id: number;
+}
 
 const Memorized = (props: TabProps) => {
     console.log('props: ', props);
@@ -11,6 +19,14 @@ const Memorized = (props: TabProps) => {
     const [pageIndex, setPageIndex] = useState<number>(1);
     const [refreshing, setRefreshing] = useState(false);
     const [callOnScrollEnd, setCallOnScrollEnd] = useState<boolean>(false);
+
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const [currentItem, setCurrentItem] = useState({
+        id: 0,
+        title: '',
+        content: '',
+    });
 
     const getListData = () => {
         getData(pageIndex, status.Memorized, data, setData, setRefreshing);
@@ -30,22 +46,78 @@ const Memorized = (props: TabProps) => {
         return setPageIndex(1);
     };
 
+    const onDeleteItem = (id: number) => {
+        const result = data.filter((e: any) => e.id !== id);
+        setData(result);
+    };
+
+    const onEditItem = (item: any) => {
+        setCurrentItem(item);
+        setModalVisible(true);
+    };
+
+    const onPressSave = () => {
+        const newData: any = data.map((item: IItemData) => {
+            if (item.id === currentItem.id) {
+                item.title = currentItem.title;
+                item.content = currentItem.content;
+                return item;
+            }
+            return item;
+        });
+        setData(newData);
+        setModalVisible(false);
+        editData(currentItem.title, currentItem.content, status.Memorized, currentItem.id);
+    };
+    // const onAddItem = () => {
+    //     setModalVisible(true);
+    // };
+
+    // const onPressSaveAdd = () => {
+    //     const newData = data.map((item) => {
+    //         if (item.id === currentItem.id) {
+    //             item.title = currentItem.title;
+    //             item.content = currentItem.content;
+    //             return item;
+    //         }
+    //         return item;
+    //     });
+    //     setData(newData);
+    //     setModalVisible(false);
+    // };
+
     return (
-        <FlatList
-            data={data}
-            renderItem={(item: any) => ItemHome(item)}
-            refreshing={refreshing}
-            onRefresh={onRefreshData}
-            initialNumToRender={10}
-            keyExtractor={({ index }: { index: number }) => index?.toString()}
-            onEndReached={() => setCallOnScrollEnd(true)}
-            onMomentumScrollEnd={() => {
-                if (callOnScrollEnd) {
-                    onLoadMoreData();
-                }
-                setCallOnScrollEnd(false);
-            }}
-        />
+        <>
+            <FlatList
+                data={data}
+                renderItem={({ item }: any) => (
+                    <ItemHome item={item} onDeleteItem={onDeleteItem} onEditItem={onEditItem} />
+                )}
+                refreshing={refreshing}
+                onRefresh={onRefreshData}
+                initialNumToRender={10}
+                keyExtractor={({ index }: { index: number }) => index?.toString()}
+                onEndReached={() => setCallOnScrollEnd(true)}
+                onMomentumScrollEnd={() => {
+                    if (callOnScrollEnd) {
+                        onLoadMoreData();
+                    }
+                    setCallOnScrollEnd(false);
+                }}
+            />
+            {/* <ModalAdd
+                isModalVisible={isModalVisible}
+                currentItem={currentItem}
+                setCurrentItem={setCurrentItem}
+                onPressSave={onPressSaveAdd}
+            /> */}
+            <ModalEdit
+                isModalVisible={isModalVisible}
+                currentItem={currentItem}
+                setCurrentItem={setCurrentItem}
+                onPressSave={onPressSave}
+            />
+        </>
     );
 };
 export default Memorized;
