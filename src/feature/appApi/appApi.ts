@@ -1,4 +1,18 @@
-import { getListData } from 'api/modules/api-app/profile';
+import { editListData, getListData } from 'api/modules/api-app/profile';
+
+const editData = async (title: string, content: string, status: number, id: number) => {
+    try {
+        const params = {
+            title,
+            content,
+            status,
+        };
+        const res: any = await editListData(params, id);
+        return res;
+    } catch (err) {
+        return console.log('err call api get list: ', err);
+    }
+};
 
 const getData = async (
     pageIndex: number,
@@ -22,4 +36,5 @@ const getData = async (
         setRefreshing(false);
     }
 };
-export { getData };
+
+export { getData, editData };

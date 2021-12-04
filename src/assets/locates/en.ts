@@ -54,6 +54,9 @@ export default {
         show: '全て',
         Memorized: '未読',
         NeedPractice: '既読',
+        save: 'Save',
+        add: 'Add',
+        header: 'メッセージ',
     },
     authen: {
         login: {
