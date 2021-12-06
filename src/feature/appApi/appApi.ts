@@ -1,4 +1,4 @@
-import { editListData, getListData } from 'api/modules/api-app/profile';
+import { editListData, getListData, addListData } from 'api/modules/api-app/profile';
 
 const editData = async (title: string, content: string, status: number, id: number) => {
     try {
@@ -8,6 +8,19 @@ const editData = async (title: string, content: string, status: number, id: numb
             status,
         };
         const res: any = await editListData(params, id);
+        return res;
+    } catch (err) {
+        return console.log('err call api get list: ', err);
+    }
+};
+
+const addData = async (title: string, content: string) => {
+    try {
+        const params = {
+            title,
+            content,
+        };
+        const res: any = await addListData(params);
         return res;
     } catch (err) {
         return console.log('err call api get list: ', err);
@@ -37,4 +50,4 @@ const getData = async (
     }
 };
 
-export { getData, editData };
+export { getData, editData, addData };
