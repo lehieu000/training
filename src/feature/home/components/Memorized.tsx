@@ -69,22 +69,6 @@ const Memorized = (props: TabProps) => {
         setModalVisible(false);
         editData(currentItem.title, currentItem.content, status.Memorized, currentItem.id);
     };
-    // const onAddItem = () => {
-    //     setModalVisible(true);
-    // };
-
-    // const onPressSaveAdd = () => {
-    //     const newData = data.map((item) => {
-    //         if (item.id === currentItem.id) {
-    //             item.title = currentItem.title;
-    //             item.content = currentItem.content;
-    //             return item;
-    //         }
-    //         return item;
-    //     });
-    //     setData(newData);
-    //     setModalVisible(false);
-    // };
 
     return (
         <>
@@ -105,12 +89,6 @@ const Memorized = (props: TabProps) => {
                     setCallOnScrollEnd(false);
                 }}
             />
-            {/* <ModalAdd
-                isModalVisible={isModalVisible}
-                currentItem={currentItem}
-                setCurrentItem={setCurrentItem}
-                onPressSave={onPressSaveAdd}
-            /> */}
             <ModalEdit
                 isModalVisible={isModalVisible}
                 currentItem={currentItem}

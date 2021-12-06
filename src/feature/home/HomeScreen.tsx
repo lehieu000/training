@@ -1,20 +1,51 @@
 import { Themes } from 'assets/themes';
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, Image, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { useTranslation } from 'react-i18next';
 import Images from 'assets/images';
+import { addData } from 'feature/appApi/appApi';
 import Memorized from './components/Memorized';
 import ShowAll from './components/ShowAll';
 import NeedPractice from './components/NeedPractice';
+import ModalAdd from './components/ModalAdd';
+
+interface IItemData {
+    title: string;
+    content: string;
+}
 
 const HomeScreen = () => {
     const { t } = useTranslation();
+    const [data, setData] = useState([]);
+
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const [currentItem, setCurrentItem] = useState({
+        title: '',
+        content: '',
+    });
+
+    const onAddItem = () => {
+        setModalVisible(true);
+    };
+
+    const onPressSaveAdd = () => {
+        const newData: any = data.map((item: IItemData) => {
+            item.title = currentItem.title;
+            item.content = currentItem.content;
+            return item;
+        });
+        setData(newData);
+        setModalVisible(false);
+        addData(currentItem.title, currentItem.content);
+    };
+
     return (
         <SafeAreaView style={styles.wrapperAll}>
             <View style={styles.styleHeader}>
                 <Text style={styles.styleTextHeader}>{t('tab.header')}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={onAddItem}>
                     <Image source={Images.icons.tab.rectangle} />
                 </TouchableOpacity>
             </View>
@@ -29,6 +60,12 @@ const HomeScreen = () => {
                 <Memorized tabLabel={t('tab.Memorized')} />
                 <NeedPractice tabLabel={t('tab.NeedPractice')} />
             </ScrollableTabView>
+            <ModalAdd
+                isModalVisible={isModalVisible}
+                currentItem={currentItem}
+                setCurrentItem={setCurrentItem}
+                onPressSaveAdd={onPressSaveAdd}
+            />
         </SafeAreaView>
     );
 };

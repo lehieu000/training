@@ -1,11 +1,11 @@
 import { Themes } from 'assets/themes';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Text, View, StyleSheet, Modal, TextInput, TouchableOpacity } from 'react-native';
 
 interface IItemData {
     title: string;
     content: string;
-    id: number;
 }
 
 interface IItemHome {
@@ -15,6 +15,7 @@ interface IItemHome {
     onPressSaveAdd(): void;
 }
 const ModalAdd = (props: IItemHome) => {
+    const { t } = useTranslation();
     const { isModalVisible, currentItem, setCurrentItem, onPressSaveAdd } = props;
     return (
         <Modal visible={isModalVisible} animationType="none" transparent={true}>
@@ -36,7 +37,7 @@ const ModalAdd = (props: IItemHome) => {
                     multiline={false}
                 />
                 <TouchableOpacity style={styles.styleButtonModal} onPress={() => onPressSaveAdd()}>
-                    <Text>Add</Text>
+                    <Text>{t('tab.add')}</Text>
                 </TouchableOpacity>
             </View>
         </Modal>

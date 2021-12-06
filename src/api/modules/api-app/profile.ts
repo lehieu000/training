@@ -7,4 +7,6 @@ const getListData = (params: any) =>
 
 const editListData = (param: any, id: number) => request.put(`v1/app/task/update/${id}`, param);
 
-export { editListData, getListData };
+const addListData = (params: any) => request.post(`v1/app/task/add`, params);
+
+export { editListData, getListData, addListData };
